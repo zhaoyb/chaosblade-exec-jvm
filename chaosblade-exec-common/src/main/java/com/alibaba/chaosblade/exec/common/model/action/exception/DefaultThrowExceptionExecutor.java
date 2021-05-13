@@ -27,6 +27,8 @@ import com.alibaba.chaosblade.exec.common.util.StringUtil;
 import java.lang.reflect.InvocationTargetException;
 
 /**
+ * 注入异常
+ *
  * @author Changjun Xiao
  */
 public class DefaultThrowExceptionExecutor implements ThrowExceptionExecutor {
@@ -61,6 +63,7 @@ public class DefaultThrowExceptionExecutor implements ThrowExceptionExecutor {
                 exceptionMessage);
         }
         if (exception != null) {
+            // 模拟抛出异常
             InterruptProcessException.throwThrowsImmediately(exception);
         }
     }

@@ -57,8 +57,10 @@ public abstract class AbstractThreadPoolFullExecutor implements ThreadPoolFullEx
             public void run() {
                 try {
                     for (int i = 0; i < maximumPoolSize; i++) {
+                        // 不断的提交线程， 这个线程里面就是一个sleep， 所以会霸占这线程
                         Future<?> future = threadPoolExecutor.submit(new InterruptableRunnable());
                         if (future != null) {
+                            // 放入到一个数组中，等注入恢复的时候，再把线程关闭掉
                             futureCache.add(future);
                         }
                     }
@@ -81,6 +83,7 @@ public abstract class AbstractThreadPoolFullExecutor implements ThreadPoolFullEx
             if (future.isCancelled() || future.isDone()) {
                 continue;
             }
+            // 恢复的时候，线程取消掉
             future.cancel(true);
         }
         futureCache.clear();

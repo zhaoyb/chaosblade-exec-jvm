@@ -17,6 +17,8 @@
 package com.alibaba.chaosblade.exec.common.model;
 
 /**
+ * 注入 异常时的 参数说明
+ *
  * @author Changjun Xiao
  */
 public interface FlagSpec {

@@ -25,6 +25,10 @@ import java.util.Map;
 public class ActionModel {
 
     private String name;
+    /**
+     * 存放的参数
+     *
+     */
     private Map<String, String> flags = new HashMap<String, String>();
 
     public ActionModel(String name) {

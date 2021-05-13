@@ -79,6 +79,12 @@ public class SandboxModule implements Module, ModuleLifecycle, PluginLifecycleLi
      */
     private DispatchService dispatchService = new DefaultDispatchService();
 
+
+    /**
+     * 虽然还没有研究完， 但是感觉入口应该在这里，应该是sendbox-core，反射调用
+     *
+     * @throws Throwable
+     */
     @Override
     public void onLoad() throws Throwable {
         LOGGER.info("load chaosblade module");

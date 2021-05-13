@@ -19,6 +19,8 @@ package com.alibaba.chaosblade.exec.common.model.action.delay;
 import com.alibaba.chaosblade.exec.common.model.action.ActionExecutor;
 
 /**
+ * 延迟 注入
+ *
  * @author Changjun Xiao
  */
 public interface DelayExecutor extends ActionExecutor {

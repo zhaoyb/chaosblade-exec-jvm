@@ -19,6 +19,9 @@ package com.alibaba.chaosblade.exec.common.model.action;
 import com.alibaba.chaosblade.exec.common.aop.EnhancerModel;
 
 /**
+ *
+ * 要注入的异常
+ *
  * @author Changjun Xiao
  */
 public interface ActionExecutor {

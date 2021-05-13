@@ -58,8 +58,10 @@ public abstract class AbstractConnPoolFullExecutor implements ConnectionPoolFull
             public void run() {
                 try {
                     for (int i = 0; i < poolSize; i++) {
+                        // 这里持续获取连接，但不释放
                         Connection connection = dataSource.getConnection();
                         if (connection != null) {
+                            // 将连接放到一个数组中，在恢复的时候， 关闭掉
                             connectionHolder.add(connection);
                         }
                     }
@@ -81,6 +83,7 @@ public abstract class AbstractConnPoolFullExecutor implements ConnectionPoolFull
         executorService.shutdownNow();
         for (Connection connection : connectionHolder) {
             try {
+                // 恢复的时候，连接关闭
                 connection.close();
             } catch (Exception e) {
                 LOGGER.warn("Close database connection exception", e);

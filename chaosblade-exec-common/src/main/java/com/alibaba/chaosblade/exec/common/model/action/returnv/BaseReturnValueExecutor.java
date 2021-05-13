@@ -59,6 +59,7 @@ public abstract class BaseReturnValueExecutor implements ReturnValueExecutor {
             variates.put("r", enhancerModel.getReturnValue());
         }
 
+        //这里其实就是一个映射器吧， 翻译基本类型用的
         final Calculator calculator = new Calculator() {
             @Override
             public Constant getValue(String name) throws CompilerException {
@@ -85,7 +86,9 @@ public abstract class BaseReturnValueExecutor implements ReturnValueExecutor {
         final Syntactic syntactic = new Syntactic(calculator);
         final Constant constant = syntactic.getFormulaValue(value);
 
+        // 生成返回值
         Object returnValue = generateReturnValue(enhancerModel.getClassLoader(), method, constant.getAsString());
+
         InterruptProcessException.throwReturnImmediately(returnValue);
     }
 }

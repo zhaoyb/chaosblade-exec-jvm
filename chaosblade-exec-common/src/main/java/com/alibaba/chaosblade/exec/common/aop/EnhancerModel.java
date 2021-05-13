@@ -27,6 +27,8 @@ import com.alibaba.chaosblade.exec.common.model.action.threadpool.ThreadPoolFull
 import com.alibaba.chaosblade.exec.common.model.matcher.MatcherModel;
 
 /**
+ * 注入异常的参数
+ *
  * @author Changjun Xiao
  */
 public class EnhancerModel {

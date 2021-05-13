@@ -26,6 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 默认的 延迟注入 实现
+ *
  * @author Changjun Xiao
  */
 public class DefaultDelayExecutor implements DelayExecutor {
@@ -41,6 +43,7 @@ public class DefaultDelayExecutor implements DelayExecutor {
 
     @Override
     public void run(EnhancerModel enhancerModel) throws Exception {
+        // 要延迟的时间
         String time = enhancerModel.getActionFlag(timeFlagSpec.getName());
         Integer sleepTimeInMillis = Integer.valueOf(time);
         int offset = 0;

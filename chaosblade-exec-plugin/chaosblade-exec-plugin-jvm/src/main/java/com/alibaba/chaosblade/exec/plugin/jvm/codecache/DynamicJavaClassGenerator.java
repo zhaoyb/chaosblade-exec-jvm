@@ -40,6 +40,14 @@ public class DynamicJavaClassGenerator {
         engineService.initialize();
     }
 
+    /**
+     * 生成Java 对象
+     *
+     *
+     * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
     public Object generateObject() throws IllegalAccessException, InstantiationException {
         String suffix = UUID.randomUUID().toString().replaceAll("-", "");
         String className = CLASS_NAME_PREFIX + suffix;

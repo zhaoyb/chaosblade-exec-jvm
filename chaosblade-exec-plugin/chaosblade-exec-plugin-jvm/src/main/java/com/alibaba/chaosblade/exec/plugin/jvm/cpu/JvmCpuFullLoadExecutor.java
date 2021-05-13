@@ -34,7 +34,9 @@ public class JvmCpuFullLoadExecutor implements ActionExecutor, StoppableActionEx
         if (executorService != null && (!executorService.isShutdown())) {
             throw new IllegalStateException("The jvm cpu full load experiment is running");
         }
+        // 绑定 CPU 核心数， 即指定几个核心满载
         String cpuCount = enhancerModel.getActionFlag(JvmConstant.FLAG_NAME_CPU_COUNT);
+        // 获取所有核心
         int maxProcessors = Runtime.getRuntime().availableProcessors();
         int threadCount = maxProcessors;
         if (!StringUtil.isBlank(cpuCount)) {
@@ -47,6 +49,7 @@ public class JvmCpuFullLoadExecutor implements ActionExecutor, StoppableActionEx
             if (executorService != null && (!executorService.isShutdown())) {
                 throw new IllegalStateException("The jvm cpu full load experiment is running...");
             }
+            // 需要N核心满载，就生成N个的线程，
             executorService = Executors.newFixedThreadPool(threadCount);
         }
         flag = true;
@@ -54,6 +57,7 @@ public class JvmCpuFullLoadExecutor implements ActionExecutor, StoppableActionEx
             executorService.submit(new Runnable() {
                 @Override
                 public void run() {
+                    // 死循环， 循环内什么都不要做
                     while (flag) {
                     }
                 }
@@ -66,7 +70,9 @@ public class JvmCpuFullLoadExecutor implements ActionExecutor, StoppableActionEx
     public void stop(EnhancerModel enhancerModel) throws Exception {
         flag = false;
         if (executorService != null && !executorService.isShutdown()) {
+            // 关闭
             executorService.shutdownNow();
+            // 设置为 null , 加快 GC
             executorService = null;
             LOGGER.info("jvm cpu full load stopped");
         }

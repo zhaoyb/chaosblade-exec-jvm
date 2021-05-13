@@ -184,6 +184,7 @@ public class CodeCacheFillingExecutor implements ActionExecutor, StoppableAction
             while (true) {
                 for (Object object : objects) {
                     try {
+                        // 不断加热方法，促使进行 JIT编译
                         Method method = object.getClass().getMethod("method");
                         for (int i = 0; i <= compileThreshold; i++) {
                             if (!flag.get()) {

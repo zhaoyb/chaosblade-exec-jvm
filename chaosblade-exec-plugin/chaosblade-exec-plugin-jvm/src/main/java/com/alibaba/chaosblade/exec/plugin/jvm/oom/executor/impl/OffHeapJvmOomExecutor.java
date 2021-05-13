@@ -23,6 +23,12 @@ public class OffHeapJvmOomExecutor extends JvmOomExecutor {
 
     private List<ByteBuffer> oomObjects = new ArrayList<ByteBuffer>();
 
+    /**
+     * 堆外
+     *
+     * @param enhancerModel
+     * @param jvmOomConfiguration
+     */
     @Override
     protected void innerRun(EnhancerModel enhancerModel, JvmOomConfiguration jvmOomConfiguration) {
         oomObjects.add(ByteBuffer.allocateDirect(jvmOomConfiguration.getBlock() * JvmConstant.ONE_MB));

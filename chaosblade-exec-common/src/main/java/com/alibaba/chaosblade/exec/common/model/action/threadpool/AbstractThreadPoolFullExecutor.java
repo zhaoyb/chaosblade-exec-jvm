@@ -60,7 +60,7 @@ public abstract class AbstractThreadPoolFullExecutor implements ThreadPoolFullEx
                         // 不断的提交线程， 这个线程里面就是一个sleep， 所以会霸占这线程
                         Future<?> future = threadPoolExecutor.submit(new InterruptableRunnable());
                         if (future != null) {
-                            // 放入到一个数组中，等注入恢复的时候，再把线程关闭掉
+                            // 放入到一个数组中，等恢复的时候，再把数组中的线程关闭掉
                             futureCache.add(future);
                         }
                     }

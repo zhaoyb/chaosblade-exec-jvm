@@ -21,8 +21,11 @@ public class JvmOomExecutorFacade implements StoppableActionExecutor {
     private final List<JvmOomExecutor> jvmOomExecutors = new ArrayList<JvmOomExecutor>();
 
     public JvmOomExecutorFacade() {
+        // 堆  Java 程序使用的空间
         jvmOomExecutors.add(new HeapJvmOomExecutor());
+        // 非堆 JVM 使用的地方， metaspace
         jvmOomExecutors.add(new NoHeapJvmOomExecutor());
+        // 堆外
         jvmOomExecutors.add(new OffHeapJvmOomExecutor());
     }
 
